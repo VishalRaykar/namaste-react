@@ -1,23 +1,27 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../Utils/mockData";
 import {useState} from "react";
+import {useEffect} from "react";
+import Shimmer from "./shimmer";
+
 
 const Body = ()=>{
-    const [searchValue, setSearchValue] = useState('');
-    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-    function onChange(event) {
-        setSearchValue(event.target.value);
-        setListOfRestaurants(resList);
-        console.log(event.target.value);
-        if(event.target.value!="")
-        {
-            setListOfRestaurants(resList.filter((res)=> res.info.name.toLowerCase().includes(event.target.value.toLowerCase())))
-        }else{            
-            setListOfRestaurants(resList);
-        }
+    const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    useEffect(()=>{
+        fetchData();
+    },[]);
+
+    fetchData=async ()=>{
+        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1477697&lng=72.9360907&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const json = await data.json();
+        console.log(json);
+        console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants); 
+        //Optional Chaining       
+        setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
     }
 
-    return (
+    //Conditional Rendering
+    return listOfRestaurants.length===0? <Shimmer/>: (
         <div className="body">
             <div className="filter">
                 <button className="filter-btn" 
@@ -27,11 +31,6 @@ const Body = ()=>{
                 >Top Rated Restaurants</button>
             </div>
             
-            <div className="filter">
-                <input className="search" id="search" value={searchValue}
-                    onChange={ (e)=>onChange(e) } />
-            </div>
-
             <div className="res-container">
                 {
                     listOfRestaurants.map(restaurant=><RestaurantCard key={restaurant.info.id} resInfo={restaurant} />)
