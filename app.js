@@ -13,11 +13,9 @@ const jsxheading = (<h1 id = "heading" className="head" tabIndex="5">
 
 // Functional Components - New - Function that returns a react element 
 
-const TitleComponent = () =>(
-        <h1 className="head">
-            Namaste react title component !
-        </h1>
-    );
+const elem = <span>Sample react element</span>;
+
+
 
 const titleElement = (<h1 className="head">
     Namaste react title element !
@@ -27,13 +25,21 @@ const titleElement = (<h1 className="head">
 const HeadingComponent2 =  () => (    
     <div id = "heading">
      {titleElement}
-     <TitleComponent/>
      <h1>Namaste react functional component</h1>
     </div>
 );
 
+const TitleComponent = () =>(
+    <h1 className="head">
+        {elem}
+        {HeadingComponent2()}
+        <HeadingComponent2/>
+        <HeadingComponent2>Helllowww</HeadingComponent2>
+        Namaste react title component !
+    </h1>
+);
 
 console.log(jsxheading);
 //JSX => React.createElement => Js Object => HTMLElement(render)
 const root = createRoot(document.getElementById("root"));
-root.render(<HeadingComponent2/>);
+root.render(<TitleComponent/>);
