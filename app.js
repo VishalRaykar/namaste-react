@@ -13,15 +13,20 @@ const jsxheading = (<h1 id = "heading" className="head" tabIndex="5">
 
 // Functional Components - New - Function that returns a react element 
 
-const TitleComponent = () => (
-    <h1 className="head">
-        Namaste react title component !
-    </h1>
-);
+const TitleComponent = () =>(
+        <h1 className="head">
+            Namaste react title component !
+        </h1>
+    );
+
+const titleElement = (<h1 className="head">
+    Namaste react title element !
+</h1>);
 
 // Component Composition
-const HeadingComponent2 =  () => (
+const HeadingComponent2 =  () => (    
     <div id = "heading">
+     {titleElement}
      <TitleComponent/>
      <h1>Namaste react functional component</h1>
     </div>
