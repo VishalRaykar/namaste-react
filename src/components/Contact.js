@@ -1,7 +1,12 @@
+import User from "./User"
+import UserClass from "./UserClass"
+
 const Contact =()=>{
     return (
         <div>
-            <h1>This is Contact page</h1>
+            <User name={"Vishal"} location={"Mumbai"}/>
+            <UserClass name={"Deepak"} location={"Delhi"}/>
+            <User name={"Suraj"} location={"Mumbai"}/>
         </div>
     )
 };
