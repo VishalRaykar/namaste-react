@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "This is namaste react by Vishal Raykar",
   "scripts": {
-    "start":"parcel index.html",
-    "build":"parcel build index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.1"
   },
   "browserslist": [
     "defaults and fully supports es6-module",
