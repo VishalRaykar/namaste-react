@@ -1,4 +1,4 @@
-import UserClass from "./UserClass"
+import UserClassApiSample from "./UserClassApiSample"
 import { Component } from "react";
 
 
@@ -21,8 +21,7 @@ class About extends Component{
         return (
             <div>
                 <h1>This is about page.</h1>
-                <UserClass name={"Deepak"} location={"Delhi"}/>
-                <UserClass name={"Deepak"} location={"Delhi"}/>
+                <UserClassApiSample name={"Deepak"} location={"Delhi"}/>
             </div>
         );
     };
