@@ -26,20 +26,20 @@ const Header = ()=>{
     const onlineStatus = useOnlineStatus();
 
     return (
-        <div className="header">
+        <div className="flex justify-between shadow-lg mb-2 px-2">
             <div className="logo-container">
-            <Link to="/"><img className="logo" src={companyLogo} /></Link>
+            <Link to="/"><img className="w-56" src={companyLogo} /></Link>
             </div>
-            <div className="nav-items">
-                <ul>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4">
                     {/* if we use anchor tag for routing , it will reload whole page */}
-                    <li>Online Status : {onlineStatus? "✅":"🔴"}</li>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about"> About Us</Link></li>
-                    <li><Link to="/contact">Contact Us</Link></li>
-                    <li>Cart</li>
-                    <button className="login-button" onClick={()=>{
+                    <li className="px-4">Online Status : {onlineStatus? "✅":"🔴"}</li>
+                    <li className="px-4"><Link to="/grocery">Grocery</Link></li>
+                    <li className="px-4"><Link to="/">Home</Link></li>
+                    <li className="px-4"><Link to="/about"> About Us</Link></li>
+                    <li className="px-4"><Link to="/contact">Contact Us</Link></li>
+                    <li className="px-4">Cart</li>
+                    <button className="login-button px-4" onClick={()=>{
                         btnName=="Login"? setBtnName("Logout"):setBtnName("Login");
                     }}>{btnName}</button>
                 </ul>

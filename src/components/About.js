@@ -19,7 +19,7 @@ class About extends Component{
         
         console.log("Parent render called");
         return (
-            <div>
+            <div className="m-4 p-4">
                 <h1>This is about page.</h1>
                 <UserClassApiSample name={"Deepak"} location={"Delhi"}/>
             </div>

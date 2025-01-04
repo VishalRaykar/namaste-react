@@ -39,10 +39,10 @@ class UserClassApiSample extends React.Component{
         const {login, id, avatar_url}= this.state.userinfo;
         console.log("Render");
         return (            
-        <div className="user-card">
-            <h2>Name : {login}</h2>
-            <h3>Id : {id}</h3>
-            <img className="image" src={avatar_url} />
+        <div className="m-4 p-4">
+            <h2 className="m-1 font-bold">Name : {login}</h2>
+            <h3 className="m-1">Id : {id}</h3>
+            <img className="my-2 pt-2 w-48 border-black shadow-2xl" src={avatar_url} />
         </div>
         )
     }

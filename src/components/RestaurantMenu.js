@@ -15,16 +15,16 @@ const RestaurantMenu=()=>{
     const {itemCards} = resInfo?.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
     console.log(itemCards);
     return (
-        <div className="menu">
-            <img className="res-logo-main" alr="res-logo-main" 
+        <div className="m-4 p-4">
+            <img className="shadow-xl w-56" alr="res-logo-main" 
                         src={CDN_URL+cloudinaryImageId}/>
-            <h1>{name}</h1>
-            <h3>{cuisines.join(", ")}</h3>
+            <div className="pt-2 font-bold text-2xl">{name}</div>
+            <h3 className="text-gray-500">{cuisines.join(", ")}</h3>
             <h4>{avgRating} stars | {sla.deliveryTime} minutes | {costForTwoMessage}</h4>
-            <ul>
+            <ul className="m-2 p-1">
                 
                     {
-                        itemCards?.map(item=><li key={item.id}>{item.card.info.name} | Rs. {item.card.info.finalPrice/100}</li>)
+                        itemCards?.map(item=><li key={item.id} className="pt-1">- {item.card.info.name} | Rs. {item.card.info.finalPrice/100}</li>)
                     }
                 
             </ul> 
