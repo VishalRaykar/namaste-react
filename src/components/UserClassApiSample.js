@@ -20,16 +20,24 @@ class UserClassApiSample extends React.Component{
        const data = await fetch("https://api.github.com/users/VishalRaykar");
        const json = await data.json();
        console.log(json);
-       console.log("Child componentDidMount");
        this.setState({
         userinfo:json
        });
     }
 
+    componentDidUpdate(){
+        console.log("componentDidUpdate called");
+    }
+
+    
+    componentWillUnmount(){
+        console.log("componentWillUnmount called");
+    }
+
     render(){
 
         const {login, id, avatar_url}= this.state.userinfo;
-        
+        console.log("Render");
         return (            
         <div className="user-card">
             <h2>Name : {login}</h2>
