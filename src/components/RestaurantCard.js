@@ -30,4 +30,16 @@ const RestaurantCard = (props)=>{
     )
 };
 
+export const withPureVegLable = (RestaurantCard) =>{
+    return(props)=>{
+       return(
+       <div>
+        <label className="absolute bg-green-800 text-white p-2 m-2 rounded-lg">
+            Pure Veg
+        </label>
+        <RestaurantCard {...props}/>
+    </div>) 
+    }
+}
+
 export default RestaurantCard;

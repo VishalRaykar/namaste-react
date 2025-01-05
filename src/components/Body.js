@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPureVegLable} from "./RestaurantCard";
 import {useState} from "react";
 import {useEffect} from "react";
 import Shimmer from "./Shimmer";
@@ -9,13 +9,14 @@ const Body = ()=>{
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setfilteredRestaurants] = useState([]);
     const [searchText, setSearchText] = useState([]);
-    useEffect(()=>{
-        fetchData();
-        console.log("UseEffect Called");
-    },[]);
 
     
-    console.log("Body Re Rendered");
+    const PureVegLableCard = withPureVegLable(RestaurantCard);
+
+    useEffect(()=>{
+        fetchData();
+    },[]);
+
 
 
     fetchData=async ()=>{
@@ -29,6 +30,7 @@ const Body = ()=>{
     const onlineStatus = useOnlineStatus();
     if(onlineStatus===false) return <h1>Looks like you're offline</h1>;
 
+    console.log(listOfRestaurants);
 
     //Conditional Rendering
     return listOfRestaurants.length===0 ? <Shimmer/>: (
@@ -53,7 +55,12 @@ const Body = ()=>{
             <div className="justify-center">
             <div className="flex flex-wrap">
                 {
-                    filteredRestaurants.map(restaurant=><Link to={"/restaurants/"+restaurant.info.id}><RestaurantCard key={restaurant.info.id} resInfo={restaurant} /></Link>)
+                    filteredRestaurants.map(restaurant=>
+                    <Link to={"/restaurants/"+restaurant.info.id}>
+                        {
+                            restaurant.info.veg?<PureVegLableCard  key={restaurant.info.id} resInfo={restaurant}/>:<RestaurantCard key={restaurant.info.id} resInfo={restaurant} />
+                        }
+                    </Link>)
                 }
             </div>
 
