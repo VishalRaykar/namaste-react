@@ -7,7 +7,7 @@ import ItemCategory from "./ItemCategory";
 const RestaurantMenu=()=>{
 
     const params = useParams();
-    resInfo = useRestaurantMenu(params.resId);
+    const resInfo = useRestaurantMenu(params.resId);
 
     if(resInfo== null || resInfo.length === 0) return <Shimmer/>;
 
@@ -30,7 +30,10 @@ const RestaurantMenu=()=>{
             </ul>  */}
 
             {
-                categories?.map((itemCategory)=><ItemCategory itemcatdata={itemCategory?.card?.card}/> )
+                categories?.map((itemCategory, index)=>
+                <ItemCategory 
+                key={itemCategory?.card?.card?.name} 
+                itemcatdata={itemCategory?.card?.card} /> )
             }
         </div>
     )
