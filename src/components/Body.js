@@ -1,9 +1,9 @@
 import RestaurantCard, {withPureVegLable} from "./RestaurantCard";
-import {useState} from "react";
-import {useEffect} from "react";
+import {useState,useEffect,useContext} from "react";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/UserContext";
 
 const Body = ()=>{
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -30,7 +30,7 @@ const Body = ()=>{
     const onlineStatus = useOnlineStatus();
     if(onlineStatus===false) return <h1>Looks like you're offline</h1>;
 
-    console.log(listOfRestaurants);
+    const {loggedInUser, setUserName} = useContext(UserContext);
 
     //Conditional Rendering
     return listOfRestaurants.length===0 ? <Shimmer/>: (
@@ -50,6 +50,11 @@ const Body = ()=>{
                             setfilteredRestaurants(listOfRestaurants.filter((res)=> res.info.avgRating > 4.3))
                         }}
                     >Top Rated Restaurants</button>
+                </div>
+
+                <div className="m-4 p-4 flex items-center">
+                    <label>User Name</label>
+                    <input value={loggedInUser} className="border border-black p-2" onChange={(e)=>{setUserName(e.target.value)}}></input>
                 </div>
             </div>
             <div className="justify-center">

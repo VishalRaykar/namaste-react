@@ -1,4 +1,4 @@
-import React,{lazy, Suspense} from "react";
+import React,{lazy, Suspense, useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from 'react-dom/client';
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./Utils/UserContext";
 // import Grocery from "./components/Grocery";
 
 //Chunking
@@ -18,12 +19,30 @@ import Shimmer from "./components/Shimmer";
 
 const Grocery = lazy(()=>import("./components/Grocery"));
 
+
 const AppLayout = ()=>{
+    
+    const [userName,setUserName]=useState();
+    //authentication logic
+
+    useEffect(()=>{
+        //Make an API call for authenticating and get user object
+        const data = {
+            name: "Vishal Raykar"
+        };
+
+        setUserName(data.name);
+    },[]);
+
     return (
-        <div className="app">
-            <Header/>
-            <Outlet/>
-        </div>
+        
+            <div className="app">
+               <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+                    <Header/>
+                    <Outlet/>
+                </UserContext.Provider>
+            </div>
+        
     )
 };
 

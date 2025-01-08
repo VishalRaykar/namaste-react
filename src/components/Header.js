@@ -1,12 +1,15 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import companyLogo from '../Images/logo-main.jpg';
 import {Link} from 'react-router-dom';
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/UserContext";
 
 const Header = ()=>{
     const [btnName,setBtnName] = useState("Login");
 
     console.log("Header Rendered");
+
+    const contextData = useContext(UserContext);
 
     // when the dependancy array is not provided then the useEffect will trigger the call back function everytime the component rerenders.
     // useEffect(()=>{
@@ -42,6 +45,7 @@ const Header = ()=>{
                     <button className="login-button px-4" onClick={()=>{
                         btnName=="Login"? setBtnName("Logout"):setBtnName("Login");
                     }}>{btnName}</button>
+                    <li className="px-4">{contextData.loggedInUser}</li>
                 </ul>
             </div>
         </div>
